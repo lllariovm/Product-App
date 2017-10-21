@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ProductServiceProvider} from "../../providers/product-service/product-service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Dialogs } from '@ionic-native/dialogs';
 
 /**
  * Generated class for the ProductDetailPage page.
@@ -27,7 +28,7 @@ export class ProductDetailPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    private productServiceProvider :ProductServiceProvider) {
+    private productServiceProvider :ProductServiceProvider, public dialogs: Dialogs) {
 
       this.myForm = this.createForm();
 
@@ -60,18 +61,30 @@ export class ProductDetailPage {
 
   }
 
-  public updateForm() {
-    this.productServiceProvider.modifyProduct(this.myForm.value.id,
-      this.myForm.value.name,
-      this.myForm.value.type,
-      this.myForm.value.quantity,
-      this.myForm.value.price, 
-      this.myForm.value.latitude,
-      this.myForm.value.longitude).then(result => {
-        console.debug(result);
-        this.navCtrl.pop();
-      })      
-      .catch(err=>console.error("error create product: ", err));
+
+   public loadConfirmAlert() {
+    this.dialogs.confirm('Desea guardar cambios', 'guardar?', ['Aceptar', 'Cancelar'])
+      .then((option: number) => this.updateForm(option))
+      .catch(e => console.log('Error displaying dialog', e));
+
+      
+    }
+
+  public updateForm(indice:number) {
+    if(indice==1){
+      this.productServiceProvider.modifyProduct(this.myForm.value.id,
+        this.myForm.value.name,
+        this.myForm.value.type,
+        this.myForm.value.quantity,
+        this.myForm.value.price, 
+        this.myForm.value.latitude,
+        this.myForm.value.longitude).then(result => {
+          console.debug(result);
+          this.navCtrl.pop();
+        })      
+        .catch(err=>console.error("error create product: ", err));
+    }
+    
   }
 
   ionViewDidLoad() {

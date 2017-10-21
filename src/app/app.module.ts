@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
+import { Dialogs } from '@ionic-native/dialogs';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DbServiceProvider } from '../providers/db-service/db-service';
 import { ProductServiceProvider } from '../providers/product-service/product-service';
@@ -38,6 +39,7 @@ import {SQLite} from "@ionic-native/sqlite";
     StatusBar,
     SplashScreen,
     SQLite,
+    Dialogs,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DbServiceProvider,
     ProductServiceProvider,
