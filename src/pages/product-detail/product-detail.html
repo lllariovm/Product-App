@@ -1,0 +1,57 @@
+<!--
+  Generated template for the ProductDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalle de producto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="myForm" (ngSubmit)="updateForm()">
+
+
+    <ion-list>
+        <ion-item>
+            <span>Id: </span><span> .I.{{ product.id }}</span>
+            <ion-input type="hidden"  formControlName="id" value="{{ product.id }}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Nombre</ion-label>
+            <ion-input type="text"  formControlName="name" value="{{ product.name }}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Tipo</ion-label>
+            <ion-input type="text"  formControlName="type" value="{{ product.type }}"></ion-input>
+        </ion-item>  
+
+        <ion-item>
+            <ion-label fixed>Cantidad</ion-label>
+            <ion-input type="text"  formControlName="quantity" value="{{ product.quantity }}"></ion-input>
+        </ion-item> 
+        <ion-item>
+            <ion-label fixed>Precio</ion-label>
+            <ion-input type="text"  formControlName="price" value="{{ product.price }}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>lat.</ion-label>
+            <ion-input type="text"  formControlName="latitude" value="{{ product.latitude }}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>long.</ion-label>
+            <ion-input type="text"  formControlName="longitude" value="{{ product.longitude }}"></ion-input>
+        </ion-item>
+
+        <button ion-button block type="submit" [disabled]="!myForm.valid">Actualizar</button>
+
+    </ion-list> 
+    </form>
+</ion-content>
