@@ -61,7 +61,17 @@ export class ProductDetailPage {
   }
 
   public updateForm() {
-    console.log("actualizando");
+    this.productServiceProvider.modifyProduct(this.myForm.value.id,
+      this.myForm.value.name,
+      this.myForm.value.type,
+      this.myForm.value.quantity,
+      this.myForm.value.price, 
+      this.myForm.value.latitude,
+      this.myForm.value.longitude).then(result => {
+        console.debug(result);
+        this.navCtrl.pop();
+      })      
+      .catch(err=>console.error("error create product: ", err));
   }
 
   ionViewDidLoad() {

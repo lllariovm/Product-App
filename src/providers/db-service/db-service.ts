@@ -145,4 +145,11 @@ export class DbServiceProvider {
       })
       .catch(err=>console.error("not ready: ", err));
   }
+  updateProduct(id:number,name:string,type:string,quantity:number,price:number,latitude:number,longitude:number){
+    return this.isReady()
+    .then(() => {
+      return this.database.executeSql(`UPDATE products SET name = '${name}', type = '${type}',quantity=${quantity}, price=${price}, latitude=${latitude}, longitude=${longitude} WHERE id = ${id}`, [])
+    })
+    .catch(err => console.error(err));
+  }
 }

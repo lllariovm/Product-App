@@ -35,5 +35,15 @@ export class ProductServiceProvider {
     })
     .catch(err=>console.error("error list of products: ", err));
   }
+  public modifyProduct(id:number,name:string,type:string,quantity:number,price:number,latitude:number,longitude:number){
+    return this.database.updateProduct(id,name,type,quantity,price,latitude,longitude).then(list => {
+      return this.getProducts()
+        .then(() => {
+          return list;
+        })
+        .catch(err=>console.error("error create product: ", err));
+  });
+  }
+
 
 }

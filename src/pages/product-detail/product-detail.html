@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Detalle de producto</ion-title>
+    <ion-title>Detalle de {{ product.name }} {{ product.type }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -21,7 +21,7 @@
 
     <ion-list>
         <ion-item>
-            <span>Id: </span><span> .I.{{ product.id }}</span>
+            Id:{{ product.id }}
             <ion-input type="hidden"  formControlName="id" value="{{ product.id }}"></ion-input>
         </ion-item>
         <ion-item>
