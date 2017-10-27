@@ -1,0 +1,44 @@
+<ion-header>
+  
+    <ion-navbar >
+     <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Detalle Perfil</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <div *ngIf="user">
+        <hr />
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>FirstName:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.firstname" disabled="true">user.firstname</ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>LastName:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.lastname" disabled="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Email:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.email" disabled="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Password:</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password" disabled="true"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Phone:</ion-label>
+            <ion-input type="text" [(ngModel)]="user.phone" disabled="true"></ion-input>
+          </ion-item>
+        </ion-list>
+        <button ion-button block color="secondary" (click)="edit()">Editar</button>
+        <br>
+        <button ion-button block color="danger" (click)="logout()">Cerrar Sesión</button>
+        <br>
+        <button ion-button color="danger" clear (click)="delete()">Eliminar Cuenta</button>
+    </div>
+  
+  </ion-content>

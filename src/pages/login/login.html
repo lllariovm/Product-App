@@ -1,0 +1,28 @@
+<ion-header>
+  
+    <ion-navbar>
+      <ion-title>Inicio de Sesion</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" novalidate>
+    <div *ngIf="user">
+        <hr />
+        <ion-list>
+            <ion-item>
+            <ion-label stacked>Email:</ion-label>
+            <ion-input formControlName="Email" type="text"  placeholder="Email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Password:</ion-label>
+            <ion-input formControlName="Password" type="password"  placeholder="Password"></ion-input>
+          </ion-item>
+          </ion-list>
+        <button ion-button block type="submit" [disabled]="!loginForm.valid">Ingresar</button>      
+    </div>  
+    </form>
+    <button ion-button color="danger" clear  (click)="goToForgotPassword()" >Olvido su contraseña?</button>
+  </ion-content>

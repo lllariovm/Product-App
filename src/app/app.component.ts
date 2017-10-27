@@ -4,8 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import {PerfilPage} from '../pages/perfil/perfil';
-import {CerrarSesionPage} from '../pages/cerrar-sesion/cerrar-sesion';
+import { OptionsPage } from '../pages/options/options';
+import { ProfileDetailPage } from '../pages/profile-detail/profile-detail';
+import { ListPage } from '../pages/list/list';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +14,7 @@ import {CerrarSesionPage} from '../pages/cerrar-sesion/cerrar-sesion';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = OptionsPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -23,8 +24,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Perfil', component: PerfilPage }, 
-      {title: 'Cerrar Sesión',component: CerrarSesionPage}
+      { title: 'Profile', component: ProfileDetailPage },
+      { title: 'Cerrar Sesion', component: OptionsPage }
     ];
 
   }

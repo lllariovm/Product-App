@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {DbServiceProvider} from "../db-service/db-service";
+import { Product } from '../../model/product';
+import { ProductServiceDbProvider } from '../product-service-db/product-service-db';
 
-/*
-  Generated class for the ProductServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ProductServiceProvider {
+
   public listProducts: any;
-  constructor(public database:DbServiceProvider) {
+
+  constructor(public database: ProductServiceDbProvider) { 
     this.getProducts();
+  }
+
+  public addProduct(product: Product){
+    return this.database.addProduct(product)
+      .then(list => {
+        return this.getProducts()
+          .then(() => {
+            return list;
+          })
+          .catch(err=>console.error("error create product: ", err));
+    });
   }
 
   public getProducts() {
@@ -28,22 +36,33 @@ export class ProductServiceProvider {
       })
       .catch(err=>console.error("error list of products: ", err));
   }
-  public getProduct(id:number){
+
+  public getProduct(id: number) {
     return this.database.getProduct(id)
-    .then((data:any) => {
-      return data;
-    })
-    .catch(err=>console.error("error list of products: ", err));
-  }
-  public modifyProduct(id:number,name:string,type:string,quantity:number,price:number,latitude:number,longitude:number){
-    return this.database.updateProduct(id,name,type,quantity,price,latitude,longitude).then(list => {
-      return this.getProducts()
-        .then(() => {
-          return list;
-        })
-        .catch(err=>console.error("error create product: ", err));
-  });
+      .then((data:any) => {
+        return data;
+      })
+      .catch(err=>console.error("error list of products: ", err));
   }
 
+
+  public removeProduct(id: number) {
+    return this.database.deleteProduct(id)
+      .then(() => {
+        return this.getProducts();
+      })
+      .catch(err=>console.error("error remove product: ", err));
+  }
+
+  public updateProduct(product: Product){
+    return this.database.updateProduct(product)
+      .then(list => {
+        return this.getProducts()
+          .then(() => {
+            return list;
+          })
+          .catch(err=>console.error("error update product: ", err));
+    });
+  }
 
 }
